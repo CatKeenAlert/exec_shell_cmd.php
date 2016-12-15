@@ -20,8 +20,10 @@ if('cli' == php_sapi_name()){
 
 echo date('r').'<br>';
 echo '['.exec('whoami').'@'.$_SERVER["SERVER_NAME"].'] '.$shell_cmd.'<br>';
-exec($shell_cmd." 2>&1", $id_info);
-if(!$id_info) exit('Get array failed.');
-foreach ( $id_info as $key => $value ) {
+exec($shell_cmd." 2>&1", $src, $status_code);
+//var_dump($status_code); exit();
+if($status_code) exit('Get array failed.');
+//var_dump($src); exit();
+foreach ( $src as $key => $value ) {
     echo $key.': '.$value.'<br>';
 }
